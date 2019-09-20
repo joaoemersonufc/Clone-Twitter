@@ -4,7 +4,7 @@ require_once('db_class.php');
 
 $usuario = $_POST['usuario'];
 $email = $_POST['email'];
-$senha = $_POST['senha'];
+$senha = md5($_POST['senha']);
 
 $objt_db = new db();
 $link = $objt_db->conectaDB();

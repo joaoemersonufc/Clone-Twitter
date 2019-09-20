@@ -18,7 +18,30 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	
 		<script>
-			// código javascript						
+			// código javascript
+			$(document).ready( function(){
+
+				//verificar se os campos de login estão preenchidos
+				$('#btn_login').click(function(){
+
+					var campo_vazio = false;
+
+					if($('#campo_usuario').val() == ''){
+						$('#campo_usuario').css({'border-color': '#A94442'});
+						campo_vazio = true;
+					}
+
+					if($('#campo_senha').val() == ''){
+						$('#campo_senha').css({'border-color': '#A94442'});
+						campo_vazio = true;
+					}
+
+					if(campo_vazio){
+					return false;
+					}
+
+				});
+			});					
 		</script>
 	</head>
 
