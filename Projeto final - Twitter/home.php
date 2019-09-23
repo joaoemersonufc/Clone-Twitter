@@ -1,12 +1,11 @@
-<?php
+<?
+    session_start();
 
-session_start();
-
-if(!isset($_SESSION['usuario'])){
-	header('Location : index.php?erro=1');
-}
-
+    if(!$_SESSION['usuario']){
+        header('Location: index.php?erro=1');
+    }
 ?>
+
 <!DOCTYPE HTML>
 <html lang="pt-br">
 	<head>
@@ -47,31 +46,43 @@ if(!isset($_SESSION['usuario'])){
 
 
 	    <div class="container">
-	    	
-	    	<br /><br />
+	    	<div class="col-md-3">
+	    		<div class="panel panel-default">
+	    			<div class="panel-body">
+	    				<h4><?= $_SESSION['usuario'] ?></h4>
 
-	    	<div class="col-md-4"></div>
-	    	<div class="col-md-4">
-	    		Usuário autenticado
-	    		<br />
-	    		<?= $_SESSION['usuario'] ?>
-	    		<br />
-	    		<?= $_SESSION['email'] ?>
- 			</div>
-			<div class="col-md-4"></div>
+	    				<hr />
+	    				<div class="col-md-6">
+	    					TWEETS <br/>
+	    				</div>
+	    				<div class "col-md-6">
+	    					SEGUIDORES <br/>
+	    				</div>
+	    			</div>
+	    		</div>
+	    	</div>
 
-			<div class="clearfix"></div>
-			<br />
-			<div class="col-md-4"></div>
-			<div class="col-md-4"></div>
-			<div class="col-md-4"></div>
+	    	<div class="col-md-6">
+	    		<div class ="panel panel-default">
+	    			<div class="panel-body">
+	    				<div class="input group">
+	    					<input type="text" class="form-control" placeholder=" O que está acontecendo agora?" maxlength="140" />
+	    					<span class="input group btn">
+	    						<button class="btn btn-default" type="button">Tweet</button>
+	    					</span>
+	    				</div>
+	    			</div>
+	    		</div>
+			</div>
 
+			<div class="col-md-3">
+	    		<div class="panel panel-default">
+	    			<div class="panel-body">
+	    				<h4><a href="#">Procurar por pessoas</a></h4>
+	    			</div>
+	    		</div>
+	    	</div>
 		</div>
-
-
-	    </div>
-	
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	
 	</body>
 </html>

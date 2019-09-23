@@ -1,34 +1,40 @@
 <?php
 
-session_start();
+    session_start();
 
-require_once('db_class.php');
+    require_once('db.class.php');
 
-$usuario = $_POST['usuario'];
-$senha = md5($_POST['senha']);
+    $usuario = $_POST['usuario'];
+    $senha = md5($_POST['senha']);
 
-$sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND senha = '$senha'";
+    $sql = "SELECT usuario, email FROM usuarios WHERE usuario = '$usuario' AND senha = '$senha'";
 
-$objtDB = new db();
-$link = $objtDB->conectaDB();
+    $objDb = new db();
+    $link = $objDb->conecta_mysql();
 
-$resultado_id = mysqli_query($link, $sql);
+    $resultado_id = mysqli_query($link, $sql);
 
-if($resultado_id){
-	//Recupera o id e os dados do usuário no BD
-	$dados_usuario = mysqli_fetch_array($resultado_id);
+    if($resultado_id){
 
-	if(isset($dados_usuario['usuario'])){
+        $dados_usuario = mysqli_fetch_array($resultado_id);
 
-		$_SESSION['usuario'] = $dados_usuario['usuario'];
-		$_SESSION['email'] = $dados_usuario['email'];
+        if(isset($dados_usuario['usuario'])){
 
-		header('Location: home.php');
-	}else {
-		header('Location: index.php?erro=1');
-	}
-}else{
-	echo 'Erro na execução da consulta, entre em contato com um ADM';
-}
+            $_SESSION['usuario'] = $dados_usuario['usuario'];
+            $_SESSION['email'] = $dados_usuario['email'];
+
+            header('Location: home.php');
+
+        }else{
+
+            header('Location: index.php?erro=1');
+
+        }
+
+    }else{
+        
+        echo "Erro na execução da consulta, favor entrar em contato com o admin do site";
+
+    }
 
 ?>
